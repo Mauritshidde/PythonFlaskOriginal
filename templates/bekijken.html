@@ -1,0 +1,26 @@
+{% block content %}
+    <div>
+      <form method="post" action="">
+        {{ form.hidden_tag() }}
+        <fieldset class="form-group">
+          <legend>voer hier de info van het contact dat u wilt toevoegen in</legend>
+          <div>
+            {{ form.naam_bekijken.label(class="form-control-label") }}
+            {{ form.naam_bekijken(class="form-control, form-control-lg") }}
+          </div>
+          <div>
+            {{ form.achternaam_bekijken.label(class="form-control-label") }}
+            {{ form.achternaam_bekijken(class="form-control, form-control-lg") }}
+          </div>
+        </fieldset>
+        <div>
+          {{ form.submit(class="btn btn-outline-info") }}
+        </div>
+      </form>
+    </div>
+    <div>
+      <small>
+        contacten bekijken? <a class="ml-2" href="{{ url_for('bekijken') }}">klik hier</a>
+      </small>
+    </div>
+{% endblock content %}

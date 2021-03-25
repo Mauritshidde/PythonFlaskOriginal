@@ -1,11 +1,17 @@
-<!DOCTYPE html>
-<html>
-  <head>
-  <link rel="stylesheet" href="style.css">
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
-
-  </body>
-</html>
+{% block content %}
+    <div>
+      <form method="post" action="">
+        {{ form.hidden_tag() }}
+        <fieldset class="form-group">
+          <legend>Join Today</legend>
+          <div>
+            {{ form.keuze_persoon_home.label(class="form-control-label") }}
+            {{ form.keuze_persoon_home(class="form-control, form-control-lg") }}
+          </div>
+        </fieldset>
+        <div>
+          {{ form.submit(class="btn btn-outline-info") }}
+        </div>
+      </form>
+    </div>
+{% endblock content %}

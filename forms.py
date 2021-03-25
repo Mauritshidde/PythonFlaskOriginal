@@ -1,23 +1,33 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, SelectField
 from wtforms.validators import DataRequired, email_validator, EqualTo
 
-class RegistrationForm(FlaskForm):
-    username = StringField('Username', validators=[DataRequired()])
-    email = StringField('Username', validators=[DataRequired()])
-    password = PasswordField('Password', validators=[DataRequired()])
-    confirm_password = PasswordField('confirm password', validators=[DataRequired(), EqualTo('password')])
+class HomeForm(FlaskForm):
+    keuze_persoon_home = SelectField('keuze uit', choices=["toevoegen_persoon", "verwijderen_persoon", "aanpassen_persoon", "bekijk_persoon"], validators=[DataRequired()])
+    submit = SubmitField('gekozen')
+
+class BekijkenForm(FlaskForm):
+    naam_bekijken = StringField('naam', validators=[DataRequired()])
+    achternaam_bekijken = StringField('achternaam', validators=[DataRequired()])
     submit = SubmitField('Sign Up')
 
-class LoginForm(FlaskForm):
-    email = StringField('Username', validators=[DataRequired()])
-    password = PasswordField('Password', validators=[DataRequired()])
-    remember = BooleanField('Remember Me')
+class ToevoegenForm(FlaskForm):
+    naam_toevoegen = StringField('naam', validators=[DataRequired()])
+    achternaam_toevoegen = StringField('achternaam', validators=[DataRequired()])
+    land_toevoegen = StringField('land', validators=[DataRequired()])
+    tel_nummer_toevoegen = StringField('tel_nummer', validators=[DataRequired()])
     submit = SubmitField('Sign Up')
 
-class PersoonForm(FlaskForm):
-    naam_persoon = StringField('naam', validators=[DataRequired()])
-    achternaam_persoon = StringField('achternaam', validators=[DataRequired()])
-    land_persoon = StringField('land', validators=[DataRequired()])
-    tel_nummer_persoon = StringField('tel_nummer', validators=[DataRequired()])
+class VerwijderenForm(FlaskForm):
+    naam_verwijderen = StringField('naam', validators=[DataRequired()])
+    achternaam_verwijderen = StringField('achternaam', validators=[DataRequired()])
+    land_verwijderen = StringField('land', validators=[DataRequired()])
+    tel_nummer_verwijderen = StringField('tel_nummer', validators=[DataRequired()])
+    submit = SubmitField('Sign Up')
+
+class AanpassenForm(FlaskForm):
+    naam_aanpassen = StringField('naam', validators=[DataRequired()])
+    achternaam_aanpassen = StringField('achternaam', validators=[DataRequired()])
+    land_aanpassen = StringField('land', validators=[DataRequired()])
+    tel_nummer_aanpassen = StringField('tel_nummer', validators=[DataRequired()])
     submit = SubmitField('Sign Up')
