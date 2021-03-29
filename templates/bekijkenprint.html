@@ -1,0 +1,27 @@
+{% block content %}
+    <div>
+      <form method="post" action="">
+        {{ form.hidden_tag() }}
+        <fieldset class="form-group">
+          <legend>voer hier de info van het contact dat u wilt bekijken in</legend>
+          <div>
+            {{ naam_api }}
+          </div>
+          <div>
+            {{ achternaam_api }}
+          </div>
+          <div>
+            {{ tel_nummer_api }}
+          </div>
+          <div>
+            {{ land_api }}
+          </div>
+      </form>
+    </div>
+    <div>
+      <small>
+        Contacten bekijken? <a class="ml-2" href="{{ url_for('bekijken') }}">klik hier</a>
+        Terug naar de hoofdpagina? <a class="ml-2" href="{{ url_for('home') }}">klik hier</a>
+      </small>
+    </div>
+{% endblock content %}

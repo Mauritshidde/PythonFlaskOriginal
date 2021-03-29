@@ -3,7 +3,7 @@
       <form method="post" action="">
         {{ form.hidden_tag() }}
         <fieldset class="form-group">
-          <legend>Join Today</legend>
+          <legend>voer hier de info van het contact dat u wilt aanpassen in</legend>
           <div>
             {{ form.naam_aanpassen.label(class="form-control-label") }}
             {{ form.naam_aanpassen(class="form-control, form-control-lg") }}
@@ -20,7 +20,8 @@
     </div>
     <div>
       <small>
-        Already have an acount? <a class="ml-2" href="{{ url_for('login') }}">Sign In</a>
+        Contacten bekijken? <a class="ml-2" href="{{ url_for('bekijken') }}">klik hier</a>
+        Terug naar de hoofdpagina? <a class="ml-2" href="{{ url_for('home') }}">klik hier</a>
       </small>
     </div>
 {% endblock content %}

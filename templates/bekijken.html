@@ -3,7 +3,7 @@
       <form method="post" action="">
         {{ form.hidden_tag() }}
         <fieldset class="form-group">
-          <legend>voer hier de info van het contact dat u wilt toevoegen in</legend>
+          <legend>voer hier de info van het contact dat u wilt bekijken in</legend>
           <div>
             {{ form.naam_bekijken.label(class="form-control-label") }}
             {{ form.naam_bekijken(class="form-control, form-control-lg") }}
@@ -12,15 +12,23 @@
             {{ form.achternaam_bekijken.label(class="form-control-label") }}
             {{ form.achternaam_bekijken(class="form-control, form-control-lg") }}
           </div>
+          <div>
+            {{ form.keuze_persoon.label(class="form-control-label") }}
+            {{ form.keuze_persoon(class="form-control, form-control-lg") }}
+          </div>
         </fieldset>
         <div>
           {{ form.submit(class="btn btn-outline-info") }}
+        </div>
+        <div>
+          {{ naam_api }}
         </div>
       </form>
     </div>
     <div>
       <small>
-        contacten bekijken? <a class="ml-2" href="{{ url_for('bekijken') }}">klik hier</a>
+        Contacten bekijken? <a class="ml-2" href="{{ url_for('bekijken') }}">klik hier</a>
+        Terug naar de hoofdpagina? <a class="ml-2" href="{{ url_for('home') }}">klik hier</a>
       </small>
     </div>
 {% endblock content %}

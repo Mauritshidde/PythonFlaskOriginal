@@ -12,6 +12,10 @@
             {{ form.achternaam_verwijderen.label(class="form-control-label") }}
             {{ form.achternaam_verwijderen(class="form-control, form-control-lg") }}
           </div>
+          <div>
+            {{ form.keuze_persoon.label(class="form-control-label") }}
+            {{ form.keuze_persoon(class="form-control, form-control-lg") }}
+          </div>
         </fieldset>
         <div>
           {{ form.submit(class="btn btn-outline-info") }}
@@ -20,7 +24,8 @@
     </div>
     <div>
       <small>
-        contacten bekijken? <a class="ml-2" href="{{ url_for('bekijken') }}">klik hier</a>
+        Contacten bekijken? <a class="ml-2" href="{{ url_for('bekijken') }}">klik hier</a>
+        Terug naar de hoofdpagina? <a class="ml-2" href="{{ url_for('home') }}">klik hier</a>
       </small>
     </div>
 {% endblock content %}
