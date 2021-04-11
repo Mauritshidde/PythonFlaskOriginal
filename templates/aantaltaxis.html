@@ -14,16 +14,19 @@
         <div class="form-control row">
           <legend>voer hier de info van het contact dat u wilt toevoegen in</legend>
           <div class="form-control main_invoer mb-2">
-            {{ form.naam_bekijken.label(class="form-control-label") }}
-            {{ form.naam_bekijken(class="form-control, form-control-lg") }}
+            {{ form.groep_invullen.label(class="form-control-label") }}
+            {{ form.groep_invullen(class="form-control, form-control-lg") }}
           </div>
           <div class="form-control main_invoer mb-2">
-            {{ form.achternaam_bekijken.label(class="form-control-label") }}
-            {{ form.achternaam_bekijken(class="form-control, form-control-lg") }}
+            {{ form.grootte_invullen.label(class="form-control-label") }}
+            {{ form.grootte_invullen(class="form-control, form-control-lg") }}
           </div>
           <div class="form-control main_invoer mb-2">
             {{ form.keuze_persoon.label(class="form-control-label") }}
             {{ form.keuze_persoon(class="form-control, form-control-lg") }}
+          </div>
+          <div>
+            {{ num_taxi }}
           </div>
         </div>
         <div class="invoer">

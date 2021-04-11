@@ -1,7 +1,8 @@
 from flask import Flask, render_template, url_for, flash, redirect
 from flask_sqlalchemy import SQLAlchemy
 import sqlite3, json, collections, sys, os
-from forms import HomeForm, ToevoegenForm, VerwijderenForm, BekijkenForm, BekijkenPrintForm
+from forms import HomeForm, ToevoegenForm, VerwijderenForm, BekijkenForm, BekijkenPrintForm, AantalTaxisForm
+from main import aantal_taxis2
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'd1ccabe4c9d3d5813ba8881bd1082fef'
@@ -17,6 +18,34 @@ c = conn.cursor()
             #land,
             #tel_nummer int
             #)""")
+
+def aantal_taxis(aantal, groottes):
+    num_een, num_twee, num_drie, num_taxi = 0, 0, 0, 0
+    for grootte in groottes:
+        if grootte == 4:
+            num_taxi += 1
+        elif grootte == 3:
+            num_drie += 1
+        elif grootte == 2:
+            num_twee += 1
+        elif grootte == 1:
+            num_een += 1
+
+    num_taxi += num_drie
+    num_een -= num_drie
+
+    num_taxi += num_twee//2
+
+    rest_twee = num_twee%2
+    num_taxi += rest_twee
+
+    if rest_twee > 0:
+        num_een -= 2
+
+    if num_een > 0:
+        num_taxi += math.ceil(num_een // 4)
+
+    print(num_taxi)
 
 def maak_API(y):
     conn = sqlite3.connect('Telefoonboek.db')
@@ -78,6 +107,8 @@ def home():
             return redirect(url_for('verwijderen'))
         elif form.keuze_persoon_home.data == "aanpassen_persoon":
             return redirect(url_for('aanpassen'))
+        elif form.keuze_persoon_home.data == "aantal_taxis":
+            return redirect(url_for('aantaltaxis'))
         else:
             return redirect(url_for('home'))
     return render_template('index.html', title='Login', form=form)
@@ -132,6 +163,21 @@ def verwijderen():
         elif form.keuze_persoon.data == "cancel":
             return redirect(url_for('toevoegen'))
     return render_template('verwijderen.html', title='Login', form=form)
+
+@app.route('/aantaltaxis', methods=['GET', "POST"])
+def aantaltaxis():
+    form = AantalTaxisForm()
+    if form.validate_on_submit():
+        if form.keuze_persoon.data == "confirm":
+            aantal = int(form.groep_invullen.data)
+            groottes2 = form.grootte_invullen.data
+            groottes = groottes2.split(',')
+            for i in range(0, len(groottes)):
+                groottes[i] = int(groottes[i])
+            aantal_taxis2(aantal, groottes)
+        elif form.keuze_persoon.data == "cancel":
+            return redirect(url_for('home'))
+    return render_template('aantaltaxis.html', title='Login', form=form)
 
 @app.route('/aanpassen')
 def aanpassen():
